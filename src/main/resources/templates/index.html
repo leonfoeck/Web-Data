@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="german">
+<head>
+    <title>EventPlaner</title>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"/>
+    <link rel="stylesheet" type="text/css" href="../static/styles.css"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<h1>Wendy Event Planer</h1>
+
+<div id="event-list">
+    <div class="event" th:each="event : ${events}">
+        <div id="event-voting">
+            <p th:id="${'event-upvote-' + event.id}" th:text="${event.upvote}"></p>
+            <button id="upvote-Button" class="upvote-Buttons" th:data-event-id="${event.id}">
+                <img src="../static/upvote-arrow.png" alt="Upvote">
+            </button>
+            <button id="downvote-Button" class="downVote-Buttons" th:data-event-id="${event.id}">
+                <img src="../static/downvote-arrow.png" alt="Downvote">
+            </button>
+            <p th:id="${'event-downvote-' + event.id}" th:text="${event.downvote}"></p>
+        </div>
+        <div class="event-info">
+            <h3 class="event-title" th:text="${event.name}"></h3>
+            <p th:text="${event.description}"></p>
+            <p th:text="'Zeitpunkt: ' + ${#temporals.format(event.event_date, 'dd.MM.yyyy HH:mm')}"></p>
+            <div th:if="${event.hasWeatherReport()}" class="weather-div">
+                <p th:text="'Temperatur: ' + ${event.weather_report}"></p>
+                <span class="material-symbols-outlined" th:text="${event.getWeather_icon()}"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="event-modal" class="hidden">
+    <div class="event" th:each="event : ${allEvents}">
+        <div class="event-modal-info">
+            <h3 class="event-title" th:text="${event.name}"></h3>
+            <p th:text="${event.description}"></p>
+            <p th:text="'findet statt am ' + ${#temporals.format(event.event_date, 'dd.MM.yyyy HH:mm')}"></p>
+            <p th:text="'in ' + ${event.place}"></p>
+            <p th:text="'Typ: ' + ${event.event_type}"></p>
+            <p th:text="'erstellt am ' + ${#temporals.format(event.time_of_creation, 'dd.MM.yyyy HH:mm')}"></p>
+            <div th:if="${event.hasWeatherReport()}" class="weather-div">
+                <p th:text="'Wetter: ' + ${event.weather_report}"></p>
+                <span class="material-symbols-outlined" th:text="${event.weather_icon}"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="extending-div">
+    <button id="show-modal" class="extending-button"></button>
+    <button id="event-add" class="extending-button"></button>
+</div>
+
+<div id="popupMenu">
+    <form th:action="@{/save}" method="post">
+        <h2>Neues Event erstellen</h2>
+        <div id="create-event-form">
+            <label for="event-name"></label>
+            <input type="text" id="event-name" placeholder="Name" required name="name">
+            <label for="event-place"></label>
+            <input type="text" id="event-place" placeholder="Ort" required name="place">
+            <label for="event-time"></label>
+            <input type="datetime-local" id="event-time" placeholder="Zeitpunkt" required name="eventDate">
+            <label for="event-description"></label>
+            <textarea id="event-description" placeholder="Beschreibung" required name="description"></textarea>
+            <label for="event-type"></label>
+            <select id="event-type" required th:required="true" name="event_type">
+                <option>Festival</option>
+                <option>Konzert</option>
+                <option>Vernissage</option>
+                <option>Skate Contest</option>
+            </select>
+            <button type="submit">Event erstellen</button>
+        </div>
+    </form>
+</div>
+
+<footer id="footer" class="desktop">
+    <div class="copyright">
+        &copy; 2023 Wendy Event Planer. Alle Rechte Lennart Hohls und Leon Föckersperger vorbehalten.
+    </div>
+</footer>
+
+
+<script src="../static/scripts.js"></script>
+</body>
+</html>

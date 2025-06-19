@@ -1,0 +1,221 @@
+body {
+    background-image: url("https://www.zdf.de/assets/wendy-sendungstypical-100~1280x720?cb=1612280976847");
+}
+
+h1 {
+    font-family: 'Kanit', sans-serif;
+    font-weight: bold;
+    font-style: italic;
+}
+
+#event-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.event {
+    background-color: white;
+    position: relative;
+    font-family: 'Kanit', sans-serif;
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 3px solid #ccc;
+    border-radius: 25px;
+    padding: 10px;
+    margin: 10px;
+    transition-duration: 0.4s;
+    box-shadow: 10px 10px 2px black;
+}
+
+.event:hover {
+    transition-duration: 0.4s;
+    box-shadow: 2px 2px 10px black;
+}
+
+
+.event-title {
+    font-weight: bold;
+}
+
+.event-author {
+    color: gray;
+}
+
+
+.event-info {
+    margin-left: 40px;
+    margin-right: 40px;
+    flex: 1;
+}
+
+#create-event-form * {
+    text-align: left;
+    width: 90%;
+    margin-bottom: 5px;
+}
+
+#popupMenu {
+    font-family: 'Kanit', sans-serif;
+    font-weight: bold;
+    position: fixed;
+    padding-left: 35px;
+    border-radius: 25px;
+    left: -100%;
+    bottom: 85px;
+    width: 300px;
+    height: 250px;
+    border: 3px solid #ccc;
+    transition: left 0.3s ease-in-out;
+    background: white;
+    transition-duration: 0.4s;
+    box-shadow: 10px 10px 2px black;
+}
+
+
+#popupMenu:hover {
+    transition-duration: 0.4s;
+    box-shadow: 2px 2px 10px black;
+}
+
+#popupMenu.active {
+    left: -2%;
+}
+
+.extending-button {
+    margin-right: 5px;
+    background-color: white;
+    color: black;
+    border-radius: 100px;
+    padding: 20px;
+    font-size: 24px;
+    border: 3px solid #ccc;
+    cursor: pointer;
+    width: 30px;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: width 0.7s ease-in-out;
+}
+
+#event-add:hover {
+    width: 280px;
+    transition: width 0.7s ease-out;
+    margin-right: 300px;
+}
+
+#extending-div {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+}
+
+#event-add:hover::before {
+    content: "Neues Event \0068\0069\006E\007A\0075\0066\00FC\0067\0065\006E";
+}
+
+#show-modal:hover::before {
+    content: "Alle Events anzeigen";
+}
+
+.extending-button:hover::before {
+    font-family: 'Kanit', sans-serif;
+    transition: opacity 1s;
+    font-size: 22px;
+    padding: 20px;
+}
+
+#event-add::before {
+    content: "+";
+}
+
+#show-modal::before {
+    content: "@";
+}
+
+.extending-button::before {
+    font-family: 'Kanit', sans-serif;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    font-size: 26px;
+    color: black;
+    transition: opacity 1s;
+    padding: 10px;
+}
+
+#event-voting {
+    position: absolute;
+    top: 20px;
+    right: 15px;
+    text-align: center;
+}
+
+
+#upvote-Button,
+#downvote-Button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0 3px;
+}
+
+#event-voting p {
+    margin: 0;
+}
+
+#upvote-Button img,
+#downvote-Button img {
+    width: 25px;
+    height: 25px;
+}
+
+#event-modal {
+    position: fixed;
+    top: 50%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+    display: none;
+    z-index: 1;
+    width: 40%;
+    height: 95%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+
+}
+
+
+.event-modal-info {
+    margin-left: 40px;
+    margin-right: 40px;
+    flex: 1;
+}
+
+.hidden {
+    display: flex;
+    flex-direction: row;
+}
+
+#show-modal:hover {
+    width: 280px;
+    transition: width 0.7s ease-out;
+}
+
+.weather-div {
+    display: flex;
+    flex-direction: row;
+}
+
+.material-symbols-outlined {
+    font-size: 36px;
+    margin-left: 15px;
+}
+
+#footer{
+    position: fixed;
+    bottom: 0;
+    left: 10px;
+}
